@@ -1,12 +1,17 @@
-import './App.css'
+import { ThemeProvider, CssBaseline, createTheme } from '@mui/material';
+
+const theme = createTheme({
+  typography: {
+    fontFamily: ['Roboto', 'sans-serif'].join(','),
+  },
+});
 
 function App() {
-
   return (
-    <>
-      <h1>Halo</h1>
-    </>
-  )
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+    </ThemeProvider>
+  );
 }
 
-export default App
+export default App;
