@@ -6,8 +6,8 @@ import {
   Typography,
 } from '@mui/material';
 import { createBrowserRouter, Link, RouterProvider } from 'react-router';
-import Table from './components/ui/Table';
-import Pagination from './components/ui/Pagination';
+
+import Dashboard from './components/pages/Dashboard';
 
 const theme = createTheme({
   typography: {
@@ -18,45 +18,7 @@ const theme = createTheme({
 const router = createBrowserRouter([
   {
     path: '/',
-    element: (
-      <Box>
-        <Table
-          columns={[
-            {
-              id: 'task',
-              label: 'Task',
-            },
-            {
-              id: 'status',
-              label: 'Status',
-            },
-          ]}
-          data={[
-            {
-              id: 1,
-              task: 'Task 1',
-              status: 'New',
-            },
-            {
-              id: 2,
-              task: 'Task 2',
-              status: 'On Progress',
-            },
-            {
-              id: 3,
-              task: 'Task 3',
-              status: 'Review',
-            },
-          ]}
-        />
-        <Pagination
-          count={10}
-          onChange={(e, page) => {
-            console.info(page);
-          }}
-        />
-      </Box>
-    ),
+    element: <Dashboard />,
   },
   {
     path: '/login',
