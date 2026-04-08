@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 import { createBrowserRouter, Link, RouterProvider } from 'react-router';
 import Table from './components/ui/Table';
+import Pagination from './components/ui/Pagination';
 
 const theme = createTheme({
   typography: {
@@ -47,6 +48,12 @@ const router = createBrowserRouter([
               status: 'Review',
             },
           ]}
+        />
+        <Pagination
+          count={10}
+          onChange={(e, page) => {
+            console.info(page);
+          }}
         />
       </Box>
     ),
