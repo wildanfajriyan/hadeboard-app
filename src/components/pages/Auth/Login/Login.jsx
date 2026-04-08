@@ -2,9 +2,15 @@ import { Paper, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
 import Select from '../../../ui/forms/Select';
+import TextField from '../../../ui/forms/TextField';
 
 const Login = () => {
-  const { control } = useForm();
+  const { control, watch } = useForm();
+  const username = watch('username');
+  const category = watch('category');
+
+  console.info(`username: ${username}`);
+  console.info(`category: ${category}`);
 
   return (
     <Stack
@@ -19,8 +25,10 @@ const Login = () => {
           padding: 2,
         }}
       >
+        <TextField control={control} name={'username'} label={'Username'} />
+
         <Select
-          name={'Category'}
+          name={'category'}
           control={control}
           label={'Choose Category'}
           options={[
