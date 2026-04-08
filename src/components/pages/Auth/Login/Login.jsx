@@ -1,16 +1,24 @@
 import { Paper, Stack } from '@mui/material';
 import { useForm } from 'react-hook-form';
 
+import DatePicker from '../../../ui/forms/DatePicker';
 import Select from '../../../ui/forms/Select';
 import TextField from '../../../ui/forms/TextField';
+import dayjs from 'dayjs';
 
 const Login = () => {
-  const { control, watch } = useForm();
+  const { control, watch } = useForm({
+    defaultValues: {
+      filterDate: dayjs(),
+    },
+  });
   const username = watch('username');
   const category = watch('category');
+  const filterDate = watch('filterDate');
 
   console.info(`username: ${username}`);
   console.info(`category: ${category}`);
+  console.info(`filterDate: ${filterDate}`);
 
   return (
     <Stack
@@ -25,6 +33,11 @@ const Login = () => {
           padding: 2,
         }}
       >
+        <DatePicker
+          control={control}
+          name={'filterDate'}
+          label={'Choose Date'}
+        />
         <TextField control={control} name={'username'} label={'Username'} />
 
         <Select
