@@ -1,62 +1,59 @@
-import { Paper, Stack } from '@mui/material';
-import dayjs from 'dayjs';
+import { Paper, Stack, Button, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
 
-import DatePicker from '@/components/ui/Forms/DatePicker';
-import Select from '@/components/ui/Forms/Select';
 import TextField from '@/components/ui/Forms/TextField';
+import AuthLayout from '@/components/layouts/AuthLayout';
+import session from '@/utils/session';
 
 const Login = () => {
-  const { control, watch } = useForm({
-    defaultValues: {
-      filterDate: dayjs(),
-    },
-  });
-  const username = watch('username');
-  const category = watch('category');
-  const filterDate = watch('filterDate');
+  const navigate = useNavigate();
+  const { control, handleSubmit } = useForm();
 
-  console.info(`username: ${username}`);
-  console.info(`category: ${category}`);
-  console.info(`filterDate: ${filterDate}`);
+  const onSubmit = (formValues) => {
+    console.info('formValues data: ', formValues);
+    session.setSession('dummy-token');
+    navigate('/');
+  };
 
   return (
-    <Stack
-      spacing={2}
-      alignItems={'center'}
-      justifyContent={'center'}
-      height={'100vh'}
-    >
+    <AuthLayout>
       <Paper
         sx={{
-          width: 600,
+          width: 500,
           padding: 2,
         }}
       >
-        <DatePicker
-          control={control}
-          name={'filterDate'}
-          label={'Choose Date'}
-        />
-        <TextField control={control} name={'username'} label={'Username'} />
-
-        <Select
-          name={'category'}
-          control={control}
-          label={'Choose Category'}
-          options={[
-            {
-              value: 'First Category',
-              label: 'First Category',
-            },
-            {
-              value: 'Second Category',
-              label: 'Second Category',
-            },
-          ]}
-        />
+        <Typography
+          variant="h5"
+          component={'h1'}
+          align="center"
+          marginBottom={2}
+        >
+          Log In
+        </Typography>
+        <Stack
+          flexDirection={'column'}
+          gap={1}
+          component={'form'}
+          onSubmit={handleSubmit(onSubmit)}
+        >
+          <TextField label={'Email'} control={control} name={'email'} />
+          <TextField label={'Password'} control={control} name={'password'} />
+          <Button type="submit" variant="contained" fullWidth>
+            Log In to Your Account
+          </Button>
+          <Button
+            type="button"
+            variant="text"
+            fullWidth
+            onClick={() => Navigate('/signup')}
+          >
+            Sign Up
+          </Button>
+        </Stack>
       </Paper>
-    </Stack>
+    </AuthLayout>
   );
 };
 
