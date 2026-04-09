@@ -5,15 +5,26 @@ import { useNavigate } from 'react-router';
 import TextField from '@/components/ui/Forms/TextField';
 import AuthLayout from '@/components/layouts/AuthLayout';
 import session from '@/utils/session';
+import { useState } from 'react';
+import services from '@/services';
 
 const Login = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
   const { control, handleSubmit } = useForm();
 
-  const onSubmit = (formValues) => {
-    console.info('formValues data: ', formValues);
-    session.setSession('dummy-token');
-    navigate('/');
+  const onSubmit = async (formValues) => {
+    setIsLoading(true);
+    
+    try {
+      const res = await services.auth.login(formValues);
+      session.setSession(res.data.data.access_token);
+      navigate('/');
+    } catch (error) {
+      console.error('Failed Login ', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
