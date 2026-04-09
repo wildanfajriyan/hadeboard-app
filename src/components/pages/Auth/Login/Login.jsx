@@ -58,21 +58,32 @@ const Login = () => {
           component={'form'}
           onSubmit={handleSubmit(onSubmit)}
         >
-          <TextField label={'Email'} control={control} name={'email'} />
           <TextField
+            id={'email'}
+            label={'Email'}
+            control={control}
+            name={'email'}
+          />
+          <TextField
+            id={'password'}
             label={'Password'}
             control={control}
             name={'password'}
             secureText={true}
           />
-          <Button type="submit" variant="contained" fullWidth>
+          <Button
+            type="submit"
+            variant="contained"
+            fullWidth
+            loading={isLoading}
+          >
             Log In to Your Account
           </Button>
           <Button
             type="button"
             variant="text"
             fullWidth
-            onClick={() => Navigate('/signup')}
+            onClick={() => navigate('/signup')}
           >
             Sign Up
           </Button>
