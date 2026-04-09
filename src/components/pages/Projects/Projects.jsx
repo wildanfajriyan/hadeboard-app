@@ -2,17 +2,13 @@ import { colors, Paper, Typography } from '@mui/material';
 
 import SidebarLayout from '@/components/layouts/SidebarLayout';
 
-const DetailProject = () => {
+const Projects = () => {
   return (
     <SidebarLayout
-      pageTitle="Project Detail"
+      pageTitle="Project List"
       breadcrumbs={[
         {
           label: 'Project List',
-          href: '/projects',
-        },
-        {
-          label: 'Test',
         },
       ]}
     >
@@ -28,4 +24,4 @@ const DetailProject = () => {
   );
 };
 
-export default DetailProject;
+export default Projects;
