@@ -2,7 +2,7 @@ import axios from 'axios';
 import session from './session';
 
 const network = axios.create({
-  baseURL: 'http://localhost:4000/v1',
+  baseURL: 'http://localhost:4000',
 });
 
 network.interceptors.request.use(
