@@ -36,7 +36,7 @@ const Login = () => {
 
     try {
       const res = await services.auth.login(formValues);
-      session.setSession(res.data.data.access_token);
+      session.setSession(res.data.data);
       navigate('/');
     } catch (error) {
       setIsOpenDialog(true);
